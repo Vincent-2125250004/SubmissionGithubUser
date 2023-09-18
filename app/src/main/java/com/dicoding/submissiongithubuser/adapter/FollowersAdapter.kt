@@ -23,7 +23,8 @@ class FollowersAdapter : ListAdapter<ItemsItem, FollowersAdapter.MyViewHolder>(D
         }
     }
 
-    class MyViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(private val binding: ListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(followers: ItemsItem) {
             binding.tvUsername.text = followers.login
             Glide.with(binding.civProfile).load(followers.avatarUrl).into(binding.civProfile)

@@ -14,17 +14,11 @@ import com.dicoding.submissiongithubuser.databinding.FragmentFollowBinding
 import com.dicoding.submissiongithubuser.ui.viewmodel.MainViewModel
 
 class FollowFragment : Fragment() {
-    companion object {
-        const val ARG_POSITION = "position"
-        const val ARG_USERNAME = "varUsername"
-    }
-
     private var _binding: FragmentFollowBinding? = null
+
     private val binding get() = _binding!!
     private var position: Int = 0
     private var username: String? = null
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +27,7 @@ class FollowFragment : Fragment() {
         _binding = FragmentFollowBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -101,5 +96,10 @@ class FollowFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val ARG_POSITION = "position"
+        const val ARG_USERNAME = "varUsername"
     }
 }

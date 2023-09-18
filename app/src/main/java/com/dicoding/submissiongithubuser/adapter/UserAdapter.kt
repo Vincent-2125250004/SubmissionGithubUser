@@ -44,7 +44,8 @@ class UserAdapter : ListAdapter<ItemsItem, UserAdapter.MyViewHolder>(DIFF_CALLBA
 
         holder.itemView.setOnClickListener {
             val intentDetail = Intent(it.context, DetailActivity::class.java)
-            intentDetail.putExtra("varUsername", user)
+            intentDetail.putExtra(DetailActivity.PAKET_USERNAME, user.login)
+            intentDetail.putExtra(DetailActivity.PAKET_AVATAR, user.avatarUrl)
             it.context.startActivity(intentDetail)
         }
     }

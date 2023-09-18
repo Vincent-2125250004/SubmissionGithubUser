@@ -1,26 +1,39 @@
 package com.dicoding.submissiongithubuser.ui.viewmodel
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dicoding.submissiongithubuser.api.response.DetailUserResponse
 import com.dicoding.submissiongithubuser.api.retrofit.ApiConfig
+import com.dicoding.submissiongithubuser.database.entity.FavoriteEntity
+import com.dicoding.submissiongithubuser.repository.FavoriteRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel : ViewModel() {
-
-    companion object {
-        private const val TAG = "DetailViewModel"
-    }
+class DetailViewModel(application: Application) : ViewModel() {
+    private val mFavoriteRepository: FavoriteRepository = FavoriteRepository(application)
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _detailUsername = MutableLiveData<DetailUserResponse>()
     val detailUsername: LiveData<DetailUserResponse> = _detailUsername
+
+    fun insert(favoriteEntity: FavoriteEntity) {
+        mFavoriteRepository.insert(favoriteEntity)
+    }
+
+    fun selectUser(login: String): LiveData<Boolean> {
+        return mFavoriteRepository.selectUser(login)
+    }
+
+    fun delete(username: String) {
+        mFavoriteRepository.delete(username)
+    }
+
 
     fun getUserDetail(username: String) {
         _isLoading.value = true
@@ -46,4 +59,9 @@ class DetailViewModel : ViewModel() {
 
         })
     }
+
+    companion object {
+        private const val TAG = "DetailViewModel"
+    }
+
 }
