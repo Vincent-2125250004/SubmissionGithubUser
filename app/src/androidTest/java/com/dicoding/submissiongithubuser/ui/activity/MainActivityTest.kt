@@ -1,6 +1,7 @@
 package com.dicoding.submissiongithubuser.ui.activity
 
 import android.view.KeyEvent
+import android.widget.EditText
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -31,8 +32,8 @@ class MainActivityTest {
     fun searchUser() {
         // Mencari view dengan ID com.google.android.material.search.SearchView
         onView(isAssignableFrom(SearchBar::class.java)).perform(click())
-        onView(isAssignableFrom(SearchView::class.java)).check(matches(isDisplayed()))
-        onView(isAssignableFrom(SearchView::class.java)).perform(
+        onView(isAssignableFrom(EditText::class.java)).check(matches(isDisplayed()))
+        onView(isAssignableFrom(EditText::class.java)).perform(
             typeText(dummyUser),
             pressKey(KeyEvent.KEYCODE_ENTER)
         )
